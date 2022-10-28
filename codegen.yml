@@ -1,0 +1,14 @@
+schema: http://localhost:8080/curator
+documents: './src/graphql/operations/*.graphql'
+generates:
+    ./src/graphql/generated/graphql.ts:
+        schema: http://localhost:8080/user
+        plugins:
+            - typescript
+            - typescript-operations
+            - typescript-react-query
+        config:
+            fetcher: graphql-request
+            exposeFetcher: true
+            exposeQueryKeys: true
+            exposeDocument: true
