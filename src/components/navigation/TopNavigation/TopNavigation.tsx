@@ -1,8 +1,6 @@
 import { ReactNode } from 'react'
 import { useSession } from 'next-auth/react'
 
-import { useTenant } from '@src/hooks/useTenant'
-
 import { Avatar, AvatarFallback, AvatarImage } from '@src/components/common/Avatar'
 import { NavBarLogo } from '@src/components/navigation/NavBarLogo'
 import { AppSwitcher } from '@src/components/navigation/AppSwitcher'
@@ -21,7 +19,6 @@ type TopNavProps = {
 }
 
 export function TopNavigation({ children }: TopNavProps) {
-	const { tenant } = useTenant()
 	const { data: session, status } = useSession()
 
 	const isAuthenticated = status === 'authenticated'
@@ -30,7 +27,6 @@ export function TopNavigation({ children }: TopNavProps) {
 		<HeaderContainer>
 			<NavContainer>
 				<AppSwitcher />
-				{tenant && <NavBarLogo tenant={tenant} />}
 				{session && isAuthenticated ? <LinksContainer>{children}</LinksContainer> : null}
 			</NavContainer>
 			{session && isAuthenticated ? (

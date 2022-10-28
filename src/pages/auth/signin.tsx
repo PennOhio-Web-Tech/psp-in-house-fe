@@ -1,5 +1,5 @@
 import { navMenuLinks } from '@src/constants/navMenuLinks'
-import { compose, getTenantMiddleware } from '@src/middleware'
+import { compose } from '@src/middleware'
 
 import { Layout } from '@src/components/common/Layout'
 import { NavMenuLinks } from '@src/components/navigation/NavMenuLinks'
@@ -10,22 +10,19 @@ import { AuthPageContainer } from '@src/styles/pages/auth.styles'
 import { GetServerSidePropsContext } from 'next'
 import { getSession } from 'next-auth/react'
 
-export const getServerSideProps = compose(
-	getTenantMiddleware,
-	async function routeToDashboardIfAuth(
-		ctx: GetServerSidePropsContext,
-		pageProps: any,
-		next: Function
-	) {
-		const session = await getSession(ctx)
-		if (session) {
-			return (pageProps.redirect = {
-				destination: '/dashboard',
-				permanent: true,
-			})
-		}
+export const getServerSideProps = compose(async function routeToDashboardIfAuth(
+	ctx: GetServerSidePropsContext,
+	pageProps: any,
+	next: Function
+) {
+	const session = await getSession(ctx)
+	if (session) {
+		return (pageProps.redirect = {
+			destination: '/dashboard',
+			permanent: true,
+		})
 	}
-)
+})
 
 export default function SigninPage() {
 	return (

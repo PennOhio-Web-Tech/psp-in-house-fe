@@ -7,6 +7,4 @@ export const LayoutContainer = styled.div`
 	grid-template-areas:
 		'top-nav'
 		'.';
-
-	${({ theme }) => theme.color.navigation}
 `

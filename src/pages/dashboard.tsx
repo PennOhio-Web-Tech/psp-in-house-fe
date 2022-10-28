@@ -1,8 +1,6 @@
 import { ReactNode } from 'react'
 
 import { compose } from '@src/middleware/compose'
-import { useTenant } from '@src/hooks/useTenant'
-import { getTenantMiddleware } from '@src/middleware/getTenantMiddleware'
 import { useRouteToSigninOnUnauth } from '@src/hooks/useRouteToSigninOnUnauth'
 
 import { navMenuLinks } from '@src/constants/navMenuLinks'
@@ -17,11 +15,10 @@ type DashboardPageProps = {
 	children: ReactNode
 }
 
-export const getServerSideProps = compose(getTenantMiddleware, withSessionMiddleware)
+export const getServerSideProps = compose(withSessionMiddleware)
 
 // SAMPLE PAGE
 export default function DashboardPage({}: DashboardPageProps) {
-	const { tenant } = useTenant()
 	useRouteToSigninOnUnauth()
 
 	return (
@@ -30,7 +27,7 @@ export default function DashboardPage({}: DashboardPageProps) {
 				<NavMenuLinks links={navMenuLinks} />
 			</TopNavigation>
 			<PageContainer>
-				<h1>{tenant?.name} - Dashboard</h1>
+				<h1> - Dashboard</h1>
 			</PageContainer>
 		</Layout>
 	)

@@ -4,7 +4,6 @@ export const HeaderContainer = styled.header`
 	grid-area: top-nav;
 	display: flex;
 	align-items: center;
-	background-color: ${({ theme }) => theme.color.navigation};
 	padding: 0 2rem;
 
 	a {

@@ -14,5 +14,4 @@ export const Anchor = styled.a`
 
 export const StyledTenantName = styled.span`
 	text-transform: uppercase;
-	color: ${({ theme }) => theme.color.accentText || 'var(--text-color-white)'};
 `

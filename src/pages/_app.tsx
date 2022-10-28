@@ -22,6 +22,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
 				<link rel="shortcut icon" href="/favicon.ico" />
 			</Head>
 			<QueryClientProvider client={queryClient}>
+				{/* @ts-ignore */}
 				<Hydrate state={pageProps.dehydratedState}>
 					<SessionProvider
 						session={session}
@@ -29,6 +30,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
 						refetchOnWindowFocus={true}
 					>
 						<AppThemeProvider>
+							{/* @ts-ignore */}
 							<Component {...pageProps} />
 							<GlobalStyles />
 							{showReactQueryDevTools && <ReactQueryDevtools />}

@@ -1,13 +1,11 @@
-import { useTenant } from '@src/hooks/useTenant'
 import { ReactNode } from 'react'
 import { ThemeProvider } from 'styled-components'
-
+import { theme } from '@src/styles'
 type AppThemeProviderProps = {
 	children: ReactNode
 }
 
 export function AppThemeProvider({ children }: AppThemeProviderProps) {
-	const { tenant } = useTenant()
-
-	return tenant ? <ThemeProvider theme={tenant.theme}>{children}</ThemeProvider> : <>{children}</>
+	//@ts-ignore
+	return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }

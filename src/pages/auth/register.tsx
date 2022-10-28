@@ -1,5 +1,5 @@
 import { navMenuLinks } from '@src/constants/navMenuLinks'
-import { compose, getTenantMiddleware } from '@src/middleware'
+import { compose } from '@src/middleware'
 
 import { Layout } from '@src/components/common/Layout'
 import { NavMenuLinks } from '@src/components/navigation/NavMenuLinks'
@@ -8,7 +8,7 @@ import { PageContainer } from '@src/styles/components'
 import { AuthPageContainer } from '@src/styles/pages/auth.styles'
 import { RegisterForm } from '@src/components/auth/RegisterForm'
 
-export const getServerSideProps = compose(getTenantMiddleware)
+export const getServerSideProps = compose()
 
 export default function RegisterPage() {
 	return (
