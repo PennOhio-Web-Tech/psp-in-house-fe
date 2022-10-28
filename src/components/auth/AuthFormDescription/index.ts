@@ -1,1 +1,0 @@
-export { AuthFormDescription } from './AuthFormDescription'
