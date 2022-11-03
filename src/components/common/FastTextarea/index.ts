@@ -1,0 +1,1 @@
+export { FastTextarea } from './FastTextarea'

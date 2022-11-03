@@ -1,0 +1,1 @@
+export { InfoHoverCard } from './InforHoverCard'

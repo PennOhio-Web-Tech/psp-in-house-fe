@@ -1,0 +1,25 @@
+import { SVGIconProps } from '@src/@types'
+import { forwardRef } from 'react'
+
+export const ChevronLeftIcon = forwardRef<SVGSVGElement>(
+	({ fill = '#818181', ...props }: SVGIconProps, ref) => {
+		return (
+			<svg
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+				ref={ref}
+				{...props}
+			>
+				<path
+					d="M16.2426 6.34317L14.8284 4.92896L7.75739 12L14.8285 19.0711L16.2427 17.6569L10.5858 12L16.2426 6.34317Z"
+					fill={fill}
+				/>
+			</svg>
+		)
+	}
+)
+
+ChevronLeftIcon.displayName = 'ChevronLeftIcon'

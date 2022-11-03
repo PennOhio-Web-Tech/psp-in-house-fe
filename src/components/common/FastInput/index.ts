@@ -1,0 +1,1 @@
+export { FastInput } from './FastInput'
