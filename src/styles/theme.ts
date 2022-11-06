@@ -21,14 +21,15 @@ declare module 'styled-components' {
 			}
 			pageUi: {
 				pageBg: string
-				sectionDivider: string
-				componentHighlight: string
-				newSubmissionBg: string
+				selected: string
+				greenAlt: string
+				tanAlt: string
+				blueAlt: string
+				salmonAlt: string
 			}
 			navigation: {
 				bg: {
 					primary: string
-					secondary: string
 				}
 			}
 			text: {
@@ -56,8 +57,8 @@ declare module 'styled-components' {
 
 export const theme: DefaultTheme = {
 	fonts: {
-		header: '"Poppins", sans-serif',
-		body: '"Source Sans Pro", sans-serif',
+		header: '"Outfit", sans-serif',
+		body: '"Outfit", sans-serif',
 	},
 	colors: {
 		neutral: {
@@ -73,15 +74,16 @@ export const theme: DefaultTheme = {
 			10: '#FFFFFF',
 		},
 		pageUi: {
-			pageBg: '#F5F4FA',
-			sectionDivider: '#CECECE',
-			componentHighlight: '#648DE5',
-			newSubmissionBg: '#CA4053',
+			pageBg: '#f5f6f7',
+			selected: '#323130',
+			greenAlt: '#dff4ce',
+			tanAlt: '#fff1d8',
+			blueAlt: '#A8E5F7',
+			salmonAlt: '#F5BBB6',
 		},
 		navigation: {
 			bg: {
-				primary: '#252525',
-				secondary: '#F5BA00',
+				primary: '#FFFFFF',
 			},
 		},
 		text: {

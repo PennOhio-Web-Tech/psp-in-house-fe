@@ -3,16 +3,11 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyles = createGlobalStyle`
     /* CSS Variables */
     :root {
-        --topNavigationHeight: 70px;
+        --sideNavigationWidth: 288px;
         --footerHeight: 62.5px;
 		--text-color: #252525;
         --text-color-white: #f5f4fa;
         --bg-color: #f5f4fa;
-        --toastify-color-info: ${({ theme }) => theme.colors.pageUi.componentHighlight};
-        --toastify-color-success: ${({ theme }) => theme.colors.pageUi.componentHighlight};
-        --toastify-color-warning: ${({ theme }) => theme.colors.navigation.bg.secondary};
-        --toastify-color-error: ${({ theme }) => theme.colors.status.error};
-        --toastify-toast-width: 360px;
 	}
 
     * {
