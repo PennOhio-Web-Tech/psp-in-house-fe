@@ -14,32 +14,32 @@ export function useTime() {
 		const month = {
 			num: monthNum,
 			text:
-				monthNum === 1
+				monthNum === 0
 					? 'Jan'
-					: monthNum === 2
+					: monthNum === 1
 					? 'Feb'
-					: monthNum === 3
+					: monthNum === 2
 					? 'Mar'
-					: monthNum === 4
+					: monthNum === 3
 					? 'Apr'
-					: monthNum === 5
+					: monthNum === 4
 					? 'May'
-					: monthNum === 6
+					: monthNum === 5
 					? 'June'
-					: monthNum === 7
+					: monthNum === 6
 					? 'July'
-					: monthNum === 8
+					: monthNum === 7
 					? 'Aug'
-					: monthNum === 9
+					: monthNum === 8
 					? 'Sep'
-					: monthNum === 10
+					: monthNum === 9
 					? 'Oct'
-					: monthNum === 11
+					: monthNum === 10
 					? 'Nov'
 					: 'Dec',
 		}
 
-		const day = now.getDay()
+		const day = now.getDate()
 		const hour = now.getHours() % 12
 		const minute = pad(now.getMinutes())
 		const second = pad(now.getSeconds())

@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components'
 export const LinksContainer = styled(Flex)`
 	padding-left: 0.5rem;
 	width: 100%;
+	
 `
 type StyledContentProps = {
 	isActive: boolean

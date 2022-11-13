@@ -1,0 +1,1 @@
+export { MenuProductItem } from './MenuProductItem'

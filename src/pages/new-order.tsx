@@ -1,4 +1,5 @@
 import { Layout } from '@src/components/common/Layout'
+import { NewOrderLayout } from '@src/components/new-order/NewOrderLayout/NewOrderLayout'
 import { SideNav } from '@src/components/side-nav/SideNav'
 import { InternalPageContainer, PageContainer } from '@src/styles/components'
 
@@ -8,7 +9,7 @@ export default function NewOrderPage() {
 			<SideNav />
 			<PageContainer>
 				<InternalPageContainer>
-					<h1>New Order</h1>
+					<NewOrderLayout />
 				</InternalPageContainer>
 			</PageContainer>
 		</Layout>
