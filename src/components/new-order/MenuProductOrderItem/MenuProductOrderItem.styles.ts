@@ -1,6 +1,6 @@
+import { MenuItemDiv } from '@src/components/common/Menu/Menu.styles'
 import { Flex } from '@src/styles/components'
 import styled from 'styled-components'
-import { MenuItemDiv } from '../Menu/Menu.styles'
 
 export const MenuProductItemDiv = styled(MenuItemDiv)`
 	background-color: #ffffff;

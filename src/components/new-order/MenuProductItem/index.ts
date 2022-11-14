@@ -1,1 +1,0 @@
-export { MenuProductItem } from './MenuProductItem'

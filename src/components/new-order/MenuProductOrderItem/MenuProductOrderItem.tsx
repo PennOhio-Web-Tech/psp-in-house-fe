@@ -2,14 +2,14 @@ import { Order, Product } from '@src/@types/Menu'
 import { AddIcon, MinusIcon } from '@src/components/icons'
 import { currencyFormatter } from '@src/utils'
 import { Dispatch, SetStateAction } from 'react'
-import { ActionFlex, MenuProductItemDiv } from './MenuProductItem.styles'
+import { ActionFlex, MenuProductItemDiv } from './MenuProductOrderItem.styles'
 
 type MenuProductItemProps = {
 	item: Product
 	order: Order
 	setOrder: Dispatch<SetStateAction<Order>>
 }
-export function MenuProductItem({ item, setOrder, order }: MenuProductItemProps) {
+export function MenuProductOrderItem({ item, setOrder, order }: MenuProductItemProps) {
 	const internalOrder = order.find(orderItem => orderItem.product.name === item.name)
 	function handleAdd() {
 		const indexToChange = order.findIndex(orderItem => orderItem.product.name === item.name)
@@ -21,7 +21,6 @@ export function MenuProductItem({ item, setOrder, order }: MenuProductItemProps)
 			setOrder([...order, { product: item, quantity: 1 }])
 		}
 	}
-	console.log(order)
 	function handleSubtract() {
 		const indexToChange = order.findIndex(orderItem => orderItem.product.name === item.name)
 		if (indexToChange > -1) {
