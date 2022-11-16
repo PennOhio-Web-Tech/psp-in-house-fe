@@ -1,6 +1,6 @@
 import { Order, Product } from '@src/@types/Menu'
 import { AddIcon, MinusIcon } from '@src/components/icons'
-import { currencyFormatter } from '@src/utils'
+import { capitalizeFirstLetter, currencyFormatter } from '@src/utils'
 import { Dispatch, SetStateAction } from 'react'
 import { ActionFlex, MenuProductItemDiv } from './MenuProductOrderItem.styles'
 
@@ -36,7 +36,7 @@ export function MenuProductOrderItem({ item, setOrder, order }: MenuProductItemP
 	return (
 		<MenuProductItemDiv>
 			<div>
-				<h4>{item.name}</h4>
+				<h4>{capitalizeFirstLetter(item.name)}</h4>
 				<p>{currencyFormatter(item.price)}</p>
 			</div>
 			<ActionFlex justifyContent="flex-end" gap=".75rem" alignItems="center">

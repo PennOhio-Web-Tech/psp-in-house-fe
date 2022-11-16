@@ -4,8 +4,12 @@ import { Dispatch, SetStateAction } from 'react'
 import { MenuCategoryItemDiv } from './MenuCategoryItem.styles'
 type MenuCategoryItemProps = {
 	item: {
-		category: string
 		id: string
+		name: string
+		description: string
+		createdAt: string
+		updatedAt: string
+		menuId: string
 		products: Product[]
 	}
 	setCategory: Dispatch<SetStateAction<string>>
@@ -13,19 +17,19 @@ type MenuCategoryItemProps = {
 }
 
 export function MenuCategoryItem({ item, setCategory, category }: MenuCategoryItemProps) {
-	const isSelected = category === item.category
+	const isSelected = category === item.name
 	return (
 		<MenuCategoryItemDiv
 			onClick={() => {
 				if (isSelected) {
 					setCategory('')
 				} else {
-					setCategory(item.category)
+					setCategory(item.name)
 				}
 			}}
 			isSelected={isSelected}
 		>
-			<h4>{capitalizeFirstLetter(item.category)}</h4>
+			<h4>{capitalizeFirstLetter(item.name)}</h4>
 			<p>{item.products.length} items</p>
 		</MenuCategoryItemDiv>
 	)

@@ -20,7 +20,7 @@ export function Menu({ order, setOrder, menu }: MenuProps) {
 	const [category, setCategory] = useState('')
 
 	const categoryToUse = menu?.find(item => {
-		return item.category === category
+		return item.name === category
 	})
 
 	return (
