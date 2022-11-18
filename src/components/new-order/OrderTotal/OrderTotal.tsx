@@ -64,7 +64,6 @@ export function OrderTotal({ order, pizzas, setOrder, setPizzas }: OrderDetailsP
 			push('/orders')
 		}
 	}
-	console.log(selected)
 
 	return (
 		<CostAndOrderActionsDiv>

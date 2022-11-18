@@ -19,7 +19,6 @@ export function MenuProductOrderItem({
 	pizzas,
 	setPizzas,
 }: MenuProductItemProps) {
-	console.log(item)
 	const internalOrder = order.find(orderItem => orderItem.product.name === item.name)
 	function handleAdd() {
 		const indexToChange = order.findIndex(orderItem => orderItem.product.name === item.name)

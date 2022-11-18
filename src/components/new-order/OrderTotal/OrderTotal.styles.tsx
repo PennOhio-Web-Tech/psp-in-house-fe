@@ -50,7 +50,6 @@ export const IconBox = styled(Flex)`
 	}
 
 	${({ isActive = false }: IconBoxAtts) => {
-		console.log(isActive)
 		if (isActive) {
 			return css`
 				background-color: ${({ theme }) => theme.colors.neutral[60]};

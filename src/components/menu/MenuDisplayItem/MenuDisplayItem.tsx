@@ -6,7 +6,6 @@ type MenuDisplayItemProps = {
 	item: Product
 }
 export function MenuDisplayItem({ item }: MenuDisplayItemProps) {
-	console.log(item)
 	return (
 		<MenuDisplayItemDiv>
 			<div>

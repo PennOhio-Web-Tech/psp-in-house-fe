@@ -17,7 +17,6 @@ type ToppingsModalProps = {
 }
 export function ToppingsModal({ toppings, size, item, pizzas, setPizzas }: ToppingsModalProps) {
 	const [isOpen, setIsOpen] = useState(false)
-	console.log(pizzas)
 	function handleAddToppings(toppingsToAdd: Topping[]) {
 		setPizzas([...pizzas, { size: size, toppings: toppingsToAdd, price: item.price }])
 	}
