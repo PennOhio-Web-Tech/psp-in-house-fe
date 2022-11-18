@@ -6,5 +6,4 @@ export const ErrorMessage = styled.p`
 	color: ${({ theme }) => theme.colors.text.offset};
 	border-radius: 0.25rem;
 	margin-bottom: 0.5rem;
-	width: fit-content;
 `
