@@ -1,7 +1,7 @@
 import { SVGIconProps } from '@src/@types'
 import { forwardRef } from 'react'
 
-export const CheckIcon = forwardRef<SVGSVGElement>(
+export const CheckIcon = forwardRef<SVGSVGElement, SVGIconProps>(
 	({ fill = '#FFF', ...props }: SVGIconProps, ref) => {
 		return (
 			<svg

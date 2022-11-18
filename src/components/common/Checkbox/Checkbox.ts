@@ -12,8 +12,8 @@ const StyledCheckbox = styled(CheckboxPrimitives.Root)`
 	border-radius: 2px;
 
 	svg {
-		width: 0.9rem;
-		height: 0.9rem;
+		width: 24px;
+		height: 24px;
 	}
 	:disabled {
 		cursor: not-allowed;

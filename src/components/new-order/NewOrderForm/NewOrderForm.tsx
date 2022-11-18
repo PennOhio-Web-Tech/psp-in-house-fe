@@ -1,4 +1,4 @@
-import { Menu as MenuType, Order } from '@src/@types/Menu'
+import { Menu as MenuType, Order, Pizza } from '@src/@types/Menu'
 import { useState } from 'react'
 import { OrderDetails } from '../OrderDetails'
 import { NewOrderGrid } from './NewOrderForm.styles'
@@ -10,7 +10,7 @@ import { ErrorMessage } from '@src/styles/components'
 
 export function NewOrderForm() {
 	const [order, setOrder] = useState<Order>([])
-
+	const [pizzas, setPizzas] = useState<Pizza[]>([])
 	const {
 		isError,
 		isLoading,
@@ -32,9 +32,15 @@ export function NewOrderForm() {
 		<NewOrderGrid>
 			<div>
 				<h2>Create New Order</h2>
-				<Menu order={order} setOrder={setOrder} menu={menu} />
+				<Menu
+					order={order}
+					setOrder={setOrder}
+					menu={menu}
+					pizzas={pizzas}
+					setPizzas={setPizzas}
+				/>
 			</div>
-			<OrderDetails order={order} setOrder={setOrder} />
+			<OrderDetails order={order} setOrder={setOrder} pizzas={pizzas} setPizzas={setPizzas} />
 		</NewOrderGrid>
 	)
 }

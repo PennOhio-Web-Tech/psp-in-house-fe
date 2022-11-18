@@ -29,4 +29,10 @@ export type Menu = {
 	products: Product[]
 }[]
 
+export type Pizza = {
+	size: 'small' | 'medium' | 'large'
+	price: number
+	toppings: Topping[]
+}
+
 export type Order = { product: Product; quantity: number }[]

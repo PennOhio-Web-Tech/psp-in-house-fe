@@ -7,8 +7,15 @@ export const OrderItemDiv = styled(Flex)`
 	height: 60px;
 	box-shadow: ${({ theme }) => theme.shadows.small};
 	padding: 1rem;
+	width: 100%;
 	span {
 		color: ${({ theme }) => theme.colors.neutral[60]};
+	}
+	div {
+		svg {
+			width: 24px;
+			height: 24px;
+		}
 	}
 	user-select: none;
 `

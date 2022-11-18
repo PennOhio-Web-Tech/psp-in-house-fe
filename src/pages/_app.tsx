@@ -6,7 +6,8 @@ import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query
 import Head from 'next/head'
 import { useState } from 'react'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 const showReactQueryDevTools = true
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -24,6 +25,17 @@ export default function App({ Component, pageProps }: AppProps) {
 					<ThemeProvider theme={theme}>
 						<Component {...pageProps} />
 						<GlobalStyles />
+						<ToastContainer
+							position="bottom-center"
+							autoClose={2500}
+							hideProgressBar={false}
+							newestOnTop
+							closeOnClick
+							rtl={false}
+							pauseOnFocusLoss
+							draggable={false}
+							pauseOnHover
+						/>
 						{showReactQueryDevTools && <ReactQueryDevtools />}
 					</ThemeProvider>
 				</Hydrate>

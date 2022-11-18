@@ -1,16 +1,15 @@
 import { Flex } from '@src/styles/components'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const CostAndOrderActionsDiv = styled.div`
 	width: 100%;
-	height: 100%;
 	background-color: white;
 	border-radius: 8px;
 	box-shadow: ${({ theme }) => theme.shadows.small};
 	padding: 1rem;
 	display: grid;
-	grid-template-rows: 2fr 3fr;
-	gap: 8rem;
+	grid-template-rows: 1fr 1.5fr 2fr;
+	gap: 1rem;
 	user-select: none;
 `
 
@@ -24,7 +23,10 @@ export const PaymentDiv = styled(Flex)`
 `
 export const SubtotalDiv = styled(Flex)`
 	width: 100%;
-	padding-bottom: 1rem;
+`
+export const ErrorDiv = styled.div`
+	width: 100%;
+	height: 100%;
 `
 export const FlexFullWidth = styled(Flex)`
 	width: 100%;
@@ -36,7 +38,7 @@ export const GrandTotalDiv = styled(Flex)`
 		font-weight: 500;
 	}
 `
-
+type IconBoxAtts = { isActive: boolean }
 export const IconBox = styled(Flex)`
 	border: 1px solid ${({ theme }) => theme.colors.neutral[50]};
 	width: 96px;
@@ -46,6 +48,15 @@ export const IconBox = styled(Flex)`
 		height: 24px;
 		width: 24px;
 	}
+
+	${({ isActive = false }: IconBoxAtts) => {
+		console.log(isActive)
+		if (isActive) {
+			return css`
+				background-color: ${({ theme }) => theme.colors.neutral[60]};
+			`
+		}
+	}}
 `
 export const IconsDiv = styled(Flex)`
 	padding-top: 0.25rem;

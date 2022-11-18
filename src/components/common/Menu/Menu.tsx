@@ -1,4 +1,4 @@
-import { Menu, Order } from '@src/@types/Menu'
+import { Menu, Order, Pizza } from '@src/@types/Menu'
 import { CircularAddIcon } from '@src/components/icons'
 import { MenuDisplayItem } from '@src/components/menu/MenuDisplayItem'
 import { MenuProductOrderItem } from '@src/components/new-order/MenuProductOrderItem'
@@ -15,8 +15,14 @@ import {
 	MenuProductsDiv,
 } from './Menu.styles'
 
-type MenuProps = { menu: Menu; order?: Order; setOrder?: Dispatch<SetStateAction<Order>> }
-export function Menu({ order, setOrder, menu }: MenuProps) {
+type MenuProps = {
+	menu: Menu
+	pizzas: Pizza[]
+	setPizzas: Dispatch<SetStateAction<Pizza[]>>
+	order?: Order
+	setOrder?: Dispatch<SetStateAction<Order>>
+}
+export function Menu({ order, setOrder, menu, pizzas, setPizzas }: MenuProps) {
 	const [category, setCategory] = useState('')
 
 	const categoryToUse = menu?.find(item => {
@@ -57,6 +63,8 @@ export function Menu({ order, setOrder, menu }: MenuProps) {
 												setOrder={setOrder}
 												order={order}
 												key={nanoid(4)}
+												pizzas={pizzas}
+												setPizzas={setPizzas}
 											/>
 										)
 									})}

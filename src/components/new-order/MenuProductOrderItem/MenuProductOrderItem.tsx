@@ -1,15 +1,25 @@
-import { Order, Product } from '@src/@types/Menu'
+import { Order, Pizza, Product } from '@src/@types/Menu'
 import { AddIcon, MinusIcon } from '@src/components/icons'
 import { capitalizeFirstLetter, currencyFormatter } from '@src/utils'
 import { Dispatch, SetStateAction } from 'react'
+import { ToppingsModal } from '../ToppingsModal'
 import { ActionFlex, MenuProductItemDiv } from './MenuProductOrderItem.styles'
 
 type MenuProductItemProps = {
 	item: Product
 	order: Order
 	setOrder: Dispatch<SetStateAction<Order>>
+	pizzas: Pizza[]
+	setPizzas: Dispatch<SetStateAction<Pizza[]>>
 }
-export function MenuProductOrderItem({ item, setOrder, order }: MenuProductItemProps) {
+export function MenuProductOrderItem({
+	item,
+	setOrder,
+	order,
+	pizzas,
+	setPizzas,
+}: MenuProductItemProps) {
+	console.log(item)
 	const internalOrder = order.find(orderItem => orderItem.product.name === item.name)
 	function handleAdd() {
 		const indexToChange = order.findIndex(orderItem => orderItem.product.name === item.name)
@@ -40,17 +50,37 @@ export function MenuProductOrderItem({ item, setOrder, order }: MenuProductItemP
 				<p>{currencyFormatter(item.price)}</p>
 			</div>
 			<ActionFlex justifyContent="flex-end" gap=".75rem" alignItems="center">
-				<MinusIcon
-					onClick={() => {
-						handleSubtract()
-					}}
-				/>
-				<h6>{internalOrder ? internalOrder.quantity : 0}</h6>
-				<AddIcon
-					onClick={() => {
-						handleAdd()
-					}}
-				/>
+				{item.name.includes('pizza') ? null : (
+					<>
+						<MinusIcon
+							onClick={() => {
+								handleSubtract()
+							}}
+						/>
+						<h6>{internalOrder ? internalOrder.quantity : 0}</h6>
+					</>
+				)}
+				{item.name.includes('pizza') ? (
+					<ToppingsModal
+						item={item}
+						pizzas={pizzas}
+						setPizzas={setPizzas}
+						size={
+							item.name.includes('small')
+								? 'small'
+								: item.name.includes('medium')
+								? 'medium'
+								: 'large'
+						}
+						toppings={item.topping}
+					/>
+				) : (
+					<AddIcon
+						onClick={() => {
+							handleAdd()
+						}}
+					/>
+				)}
 			</ActionFlex>
 		</MenuProductItemDiv>
 	)
