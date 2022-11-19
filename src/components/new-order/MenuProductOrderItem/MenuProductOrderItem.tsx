@@ -49,7 +49,7 @@ export function MenuProductOrderItem({
 				<p>{currencyFormatter(item.price)}</p>
 			</div>
 			<ActionFlex justifyContent="flex-end" gap=".75rem" alignItems="center">
-				{item.name.includes('pizza') ? null : (
+				{item.topping.length > 1 ? null : (
 					<>
 						<MinusIcon
 							onClick={() => {
@@ -59,7 +59,7 @@ export function MenuProductOrderItem({
 						<h6>{internalOrder ? internalOrder.quantity : 0}</h6>
 					</>
 				)}
-				{item.name.includes('pizza') ? (
+				{item.topping.length > 1 ? (
 					<ToppingsModal
 						item={item}
 						pizzas={pizzas}

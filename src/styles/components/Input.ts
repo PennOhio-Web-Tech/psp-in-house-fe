@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Input = styled.input`
 	padding: 1rem;
-	border: 1px solid ${({ theme }) => theme.colors.pageUi.sectionDivider};
+	border: 1px solid ${({ theme }) => theme.colors.pageUi.selected};
 	border-radius: 4px;
 	color: ${({ theme }) => theme.colors.text.primary};
 	font-size: 1rem;

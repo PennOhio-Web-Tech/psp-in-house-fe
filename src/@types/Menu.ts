@@ -1,9 +1,9 @@
 export type Topping = {
 	id: string
 	name: string
-	priceSmall: number
-	priceMedium: number
-	priceLarge: number
+	priceSmall?: number
+	priceMedium?: number
+	priceLarge?: number
 	createdAt: string
 	updatedAt: string
 }
@@ -36,3 +36,13 @@ export type Pizza = {
 }
 
 export type Order = { product: Product; quantity: number }[]
+
+export type BEOrder = {
+	id: string
+	createdAt: string
+	subtotal: number
+	tax: number
+	total: number
+	paidWith: string
+	products: Product[]
+}

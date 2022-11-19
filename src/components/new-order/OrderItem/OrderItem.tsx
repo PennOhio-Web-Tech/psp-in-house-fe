@@ -1,7 +1,7 @@
 import { Order, Pizza } from '@src/@types/Menu'
 import { TrashIcon } from '@src/components/icons'
 import { Flex } from '@src/styles/components'
-import { currencyFormatter } from '@src/utils'
+import { capitalizeFirstLetter, currencyFormatter } from '@src/utils'
 import { Dispatch, SetStateAction } from 'react'
 import styled from 'styled-components'
 import { BlackCircle, OrderItemDiv } from './OrderItem.styles'
@@ -29,7 +29,8 @@ export function OrderItem({ order, setOrder, pizzas, index }: OrderItemProps) {
 						{index + 1 + pizzas.length}
 					</BlackCircle>
 					<p>
-						{order[index].product.name} <span>x{order[index].quantity}</span>
+						{capitalizeFirstLetter(order[index].product.name)}{' '}
+						<span>x{order[index].quantity}</span>
 					</p>
 				</Flex>
 				<h6>{price}</h6>
