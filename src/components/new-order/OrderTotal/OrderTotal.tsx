@@ -2,6 +2,7 @@ import { Order, Pizza } from '@src/@types/Menu'
 import { CashIcon, CreditCardIcon, PhoneIcon } from '@src/components/icons'
 import { ErrorMessage, Flex } from '@src/styles/components'
 import { currencyFormatter } from '@src/utils'
+import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -17,6 +18,8 @@ import {
 	SubtotalDiv,
 	TotalDiv,
 } from './OrderTotal.styles'
+import { addOrder } from '@src/services/api/order'
+import { OrderCreateInput } from '@src/services/validators/orders'
 
 type OrderDetailsProps = {
 	order: Order
@@ -49,19 +52,66 @@ export function OrderTotal({ order, pizzas, setOrder, setPizzas }: OrderDetailsP
 
 		subTotal = subTotal + price
 	})
+
+	function getPizzaPrice(pizza: Pizza) {
+		const toppingsPrice = pizza.toppings.reduce((accumulator, value) => {
+			return pizza.size === 'small'
+				? accumulator + value.priceSmall
+				: pizza.size === 'medium'
+				? accumulator + value.priceMedium
+				: accumulator + value.priceLarge
+		}, 0)
+		return pizza.price + toppingsPrice
+	}
+
 	const isThereFood = pizzas.length > 0 || order.length > 0
 
 	const taxTotal = subTotal * TAX
-	function handleSubmission() {
-		console.log(pizzas)
-		console.log(order)
+
+	const addOrderMutation = useMutation(
+		async (orderData: OrderCreateInput) => await addOrder(orderData),
+		{
+			onSuccess: () => {
+				setPizzas([])
+				setOrder([])
+				setWasSubmitted(false)
+				toast.success('Order has been placed successfully!')
+				push('/orders')
+			},
+		}
+	)
+	async function handleSubmission() {
+		const newOrder = {
+			subtotal: subTotal,
+			tax: taxTotal,
+			total: subTotal + taxTotal,
+			paidWith: selected,
+			products: [
+				...pizzas.map(pizza => {
+					return {
+						productName: `${pizza.size} pizza`,
+						productPrice: getPizzaPrice(pizza),
+						toppings: pizza.toppings.map(topping => topping.name),
+					}
+				}),
+				...order.map(item => {
+					return {
+						productName: item.product.name,
+						productPrice: item.product.price,
+						toppings: [],
+					}
+				}),
+			],
+		}
+
+		console.log({ newOrder })
 		setWasSubmitted(true)
-		if (isThereFood && selected !== '') {
-			setPizzas([])
-			setOrder([])
-			setWasSubmitted(false)
-			toast.success('Order has been placed successfully!')
-			push('/orders')
+		try {
+			if (isThereFood && selected !== '') {
+				addOrderMutation.mutate(newOrder)
+			}
+		} catch (error) {
+			console.log(error)
 		}
 	}
 

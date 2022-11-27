@@ -1,4 +1,5 @@
 export function capitalizeFirstLetter(string: string) {
+	console.log(string)
 	const words = string.split(' ')
 
 	for (let i = 0; i < words.length; i++) {

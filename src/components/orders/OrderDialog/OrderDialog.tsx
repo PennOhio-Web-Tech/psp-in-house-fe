@@ -1,4 +1,3 @@
-import { BEOrder } from '@src/@types/Menu'
 import { Dialog, DialogContent, DialogTrigger } from '@src/components/common/Dialog'
 import { Flex } from '@src/styles/components'
 import { capitalizeFirstLetter, currencyFormatter } from '@src/utils'
@@ -11,9 +10,26 @@ import {
 	ProductsFlex,
 } from './OrderDialog.styles'
 
-type OrderDialogProps = { order: BEOrder }
+export type Order = {
+	id: string
+	createdAt: string
+	paidWith: string
+	total: number
+	subtotal: number
+	tax: number
+	products: {
+		name: string
+		price: number
+		topping: {
+			name: string
+		}[]
+	}[]
+}
+
+type OrderDialogProps = { order: Order }
 
 export function OrderDialog({ order }: OrderDialogProps) {
+	console.log({ order })
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
@@ -30,7 +46,7 @@ export function OrderDialog({ order }: OrderDialogProps) {
 					{/* date */}
 					<div>
 						<p>{order.createdAt}</p>
-						<p>{order.products.length} items</p>
+						<p>{order.products?.length} items</p>
 					</div>
 				</OrderTriggerDiv>
 			</DialogTrigger>
@@ -43,7 +59,7 @@ export function OrderDialog({ order }: OrderDialogProps) {
 			>
 				<ContentContainer>
 					<ProductsFlex direction="column" gap="1rem">
-						{order.products.map(product => {
+						{order.products?.map(product => {
 							return (
 								<ProductContainer>
 									<div>

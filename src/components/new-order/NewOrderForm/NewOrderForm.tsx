@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { OrderDetails } from '../OrderDetails'
 import { NewOrderGrid } from './NewOrderForm.styles'
 import { Menu } from '@src/components/common/Menu'
-import { useQuery } from '@tanstack/react-query'
 import { getMenu } from '@src/services/api/menu'
 import { Spinner } from '@src/components/icons'
 import { ErrorMessage } from '@src/styles/components'
+import { useQuery } from '@tanstack/react-query'
 
 export function NewOrderForm() {
 	const [order, setOrder] = useState<Order>([])
