@@ -34,13 +34,15 @@ export const GlobalStyles = createGlobalStyle`
     h1, h2, h3, h4, h5, h6, strong {
         font-family: ${({ theme }) => theme.fonts.header};
         color: ${({ theme }) => theme.colors.text.primary};
-        font-weight: 600;
+        font-weight: 600; 
+        user-select: none;
     }
 
     p {
         font-family: ${({ theme }) => theme.fonts.body}; 
         color: ${({ theme }) => theme.colors.text.secondary};
         white-space: pre-line;
+        user-select: none;
     }
 
     h1 {

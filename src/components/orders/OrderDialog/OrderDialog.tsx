@@ -86,7 +86,7 @@ export function OrderDialog({ order }: OrderDialogProps) {
 										<h6>Subtotal</h6>
 										<h6>Tax</h6>
 									</Flex>
-									<h5>Total</h5>
+									<h4>Total</h4>
 								</Flex>
 								<Flex direction="column">
 									<Flex direction="column" gap="1rem">
@@ -94,7 +94,7 @@ export function OrderDialog({ order }: OrderDialogProps) {
 											<h6>{currencyFormatter(order.subtotal)}</h6>
 											<h6>{currencyFormatter(order.tax)}</h6>
 										</div>
-										<h5>{currencyFormatter(order.total)}</h5>
+										<h4>{currencyFormatter(order.total)}</h4>
 									</Flex>
 								</Flex>
 							</Flex>

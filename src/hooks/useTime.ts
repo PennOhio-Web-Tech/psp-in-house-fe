@@ -43,15 +43,27 @@ export function useTime() {
 		const hour = now.getHours() % 12
 		const minute = pad(now.getMinutes())
 		const second = pad(now.getSeconds())
-		const isAm = now.getHours() < 12
+		const isAm = now.getHours() < 2
+
 		return { year, month, day, hour, minute, second, isAm }
 	}
 
 	setTimeout(() => {
-		document.getElementById('one')!.innerText = `${time.day} ${time.month.text} ${time.year}`
-		document.getElementById('two')!.innerText = `${time.hour}:${time.minute}:${time.second} ${
-			time.isAm ? 'AM' : 'PM'
-		}`
+		if (time.hour === 0) {
+			document.getElementById(
+				'one'
+			)!.innerText = `${time.day} ${time.month.text} ${time.year}`
+			document.getElementById('two')!.innerText = `12:${time.minute}:${time.second} ${
+				time.isAm ? 'AM' : 'PM'
+			}`
+		} else {
+			document.getElementById(
+				'one'
+			)!.innerText = `${time.day} ${time.month.text} ${time.year}`
+			document.getElementById('two')!.innerText = `${time.hour}:${time.minute}:${
+				time.second
+			} ${time.isAm ? 'AM' : 'PM'}`
+		}
 
 		setTime(getTime())
 	}, 1000)
