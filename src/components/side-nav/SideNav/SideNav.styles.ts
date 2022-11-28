@@ -14,5 +14,5 @@ export const LogoContainer = styled.div`
 `
 
 export const AvatarAndSignOut = styled.div`
-	border: 1px solid red;
+	/* border: 1px solid red; */
 `

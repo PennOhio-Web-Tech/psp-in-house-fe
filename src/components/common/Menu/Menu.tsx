@@ -44,20 +44,24 @@ export function Menu({ order, setOrder, menu, pizzas, setPizzas }: MenuProps) {
 						{setOrder && order && pizzas && setPizzas ? (
 							<>
 								<DividerLine />
-								<MenuProductsDiv>
-									{categoryToUse.products.map(item => {
-										return (
-											<MenuProductOrderItem
-												item={item}
-												setOrder={setOrder}
-												order={order}
-												key={nanoid(4)}
-												pizzas={pizzas}
-												setPizzas={setPizzas}
-											/>
-										)
-									})}
-								</MenuProductsDiv>
+								{categoryToUse.products.length > 0 ? (
+									<MenuProductsDiv>
+										{categoryToUse.products.map(item => {
+											return (
+												<MenuProductOrderItem
+													item={item}
+													setOrder={setOrder}
+													order={order}
+													key={nanoid(4)}
+													pizzas={pizzas}
+													setPizzas={setPizzas}
+												/>
+											)
+										})}{' '}
+									</MenuProductsDiv>
+								) : (
+									<h4>No products are currently in this category.</h4>
+								)}
 							</>
 						) : (
 							<>
@@ -66,7 +70,10 @@ export function Menu({ order, setOrder, menu, pizzas, setPizzas }: MenuProps) {
 									{categoryToUse.products.map(item => {
 										return <MenuDisplayItem item={item} key={nanoid(4)} />
 									})}
-									<AddNewProductCardDialog category={category} />
+									<AddNewProductCardDialog
+										category={category}
+										categoryId={categoryToUse.id}
+									/>
 								</MenuProductsDiv>
 							</>
 						)}

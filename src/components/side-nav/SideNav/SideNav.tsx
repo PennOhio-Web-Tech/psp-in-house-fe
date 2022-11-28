@@ -10,9 +10,7 @@ export function SideNav() {
 			</LogoContainer>
 			<Clock />
 			<SideNavLinks />
-			<AvatarAndSignOut>
-				<p>avatar and sign out will go here</p>
-			</AvatarAndSignOut>
+			<AvatarAndSignOut />
 		</SideNavContainer>
 	)
 }

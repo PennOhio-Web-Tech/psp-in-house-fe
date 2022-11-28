@@ -42,11 +42,11 @@ export function OrderTotal({ order, pizzas, setOrder, setPizzas }: OrderDetailsP
 	})
 	pizzas.forEach(pizza => {
 		const toppingsPrice = pizza.toppings.reduce((accumulator, value) => {
-			return pizza.size === 'small'
+			return pizza.size === 'small' && value.priceSmall
 				? accumulator + value.priceSmall
 				: pizza.size === 'medium'
-				? accumulator + value.priceMedium
-				: accumulator + value.priceLarge
+				? accumulator + value.priceMedium!
+				: accumulator + value.priceLarge!
 		}, 0)
 		const price = pizza.price + toppingsPrice
 
@@ -55,11 +55,11 @@ export function OrderTotal({ order, pizzas, setOrder, setPizzas }: OrderDetailsP
 
 	function getPizzaPrice(pizza: Pizza) {
 		const toppingsPrice = pizza.toppings.reduce((accumulator, value) => {
-			return pizza.size === 'small'
+			return pizza.size === 'small' && value.priceSmall
 				? accumulator + value.priceSmall
-				: pizza.size === 'medium'
+				: pizza.size === 'medium' && value.priceMedium
 				? accumulator + value.priceMedium
-				: accumulator + value.priceLarge
+				: accumulator + value.priceLarge!
 		}, 0)
 		return pizza.price + toppingsPrice
 	}

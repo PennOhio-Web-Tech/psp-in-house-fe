@@ -48,6 +48,11 @@ export function useTime() {
 	}
 
 	setTimeout(() => {
+		document.getElementById('one')!.innerText = `${time.day} ${time.month.text} ${time.year}`
+		document.getElementById('two')!.innerText = `${time.hour}:${time.minute}:${time.second} ${
+			time.isAm ? 'AM' : 'PM'
+		}`
+
 		setTime(getTime())
 	}, 1000)
 

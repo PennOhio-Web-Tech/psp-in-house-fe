@@ -61,7 +61,7 @@ export function ToppingsModal({ toppings, size, item, pizzas, setPizzas }: Toppi
 											</CheckboxIndicator>
 										</Checkbox>
 										<h6>{topping.name}</h6>
-										<p>{currencyFormatter(price)}</p>
+										{price ? <p>{currencyFormatter(price)}</p> : null}
 									</Flex>
 								)
 							})}

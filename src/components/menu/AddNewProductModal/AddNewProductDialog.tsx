@@ -1,8 +1,10 @@
 import { Dialog, DialogContent, DialogTrigger } from '@src/components/common/Dialog'
 import { CircularAddIcon } from '@src/components/icons'
+import { addProduct, AddProductType } from '@src/services/api/menu'
 import { Button, Fieldset, Input, Label, Textarea } from '@src/styles/components'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FormEvent, useState } from 'react'
-import { ToppingSection } from '../ToppingSection'
+import { toast } from 'react-toastify'
 import {
 	ActionContainer,
 	AddNewProductCard,
@@ -11,19 +13,34 @@ import {
 	NumberInputsContainer,
 } from './AddNewProductDialog.styles'
 
-type AddNewProductCardDialogProps = { category: string }
-export function AddNewProductCardDialog({ category }: AddNewProductCardDialogProps) {
+type AddNewProductCardDialogProps = { category: string; categoryId: string }
+export function AddNewProductCardDialog({ category, categoryId }: AddNewProductCardDialogProps) {
 	const [isOpen, setIsOpen] = useState(false)
+	const queryClient = useQueryClient()
 
 	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 		const formData = new FormData(e.currentTarget)
 		const fields = Object.fromEntries(formData.entries())
-		console.log(fields)
-		//parse
-		//set category
-		setIsOpen(false)
+
+		const productData: AddProductType = {
+			name: fields['name'] as string,
+			description: fields['description'] as string,
+			price: fields['price'] as string,
+			id: categoryId,
+		}
+		addPriceMutation.mutate(productData)
 	}
+	const addPriceMutation = useMutation(
+		async (productData: AddProductType) => await addProduct(productData),
+		{
+			onSuccess: () => {
+				toast.success('Product has been added successfully!')
+				setIsOpen(false)
+				queryClient.invalidateQueries(['menu'])
+			},
+		}
+	)
 	return (
 		<Dialog open={isOpen}>
 			<DialogTrigger asChild>
@@ -65,7 +82,7 @@ export function AddNewProductCardDialog({ category }: AddNewProductCardDialogPro
 								</CurrencyWrapper>
 							</Fieldset>
 						</NumberInputsContainer>
-						<ToppingSection />
+						{/* <ToppingSection /> */}
 					</FormContainer>
 					<ActionContainer justifyContent="flex-end">
 						<Button variant="white" type="submit">

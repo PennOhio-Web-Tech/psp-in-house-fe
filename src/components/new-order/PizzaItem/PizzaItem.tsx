@@ -14,10 +14,10 @@ type PizzaItemProps = {
 export function PizzaItem({ pizzas, setPizzas, index }: PizzaItemProps) {
 	const toppingsPrice = pizzas[index]?.toppings?.reduce((accumulator, value) => {
 		return pizzas[index]?.size === 'small'
-			? accumulator + value.priceSmall
+			? accumulator + value.priceSmall!
 			: pizzas[index]?.size === 'medium'
-			? accumulator + value.priceMedium
-			: accumulator + value.priceLarge
+			? accumulator + value.priceMedium!
+			: accumulator + value.priceLarge!
 	}, 0)
 	const price = pizzas[index]?.price + toppingsPrice
 
