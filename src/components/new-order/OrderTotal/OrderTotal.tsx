@@ -104,7 +104,6 @@ export function OrderTotal({ order, pizzas, setOrder, setPizzas }: OrderDetailsP
 			],
 		}
 
-		console.log({ newOrder })
 		setWasSubmitted(true)
 		try {
 			if (isThereFood && selected !== '') {

@@ -49,21 +49,10 @@ export function useTime() {
 	}
 
 	setTimeout(() => {
-		if (time.hour === 0) {
-			document.getElementById(
-				'one'
-			)!.innerText = `${time.day} ${time.month.text} ${time.year}`
-			document.getElementById('two')!.innerText = `12:${time.minute}:${time.second} ${
-				time.isAm ? 'AM' : 'PM'
-			}`
-		} else {
-			document.getElementById(
-				'one'
-			)!.innerText = `${time.day} ${time.month.text} ${time.year}`
-			document.getElementById('two')!.innerText = `${time.hour}:${time.minute}:${
-				time.second
-			} ${time.isAm ? 'AM' : 'PM'}`
-		}
+		document.getElementById('one')!.innerText = `${time.day} ${time.month.text} ${time.year}`
+		document.getElementById('two')!.innerText = `${time.hour}:${time.minute}:${time.second} ${
+			time.isAm ? 'AM' : 'PM'
+		}`
 
 		setTime(getTime())
 	}, 1000)

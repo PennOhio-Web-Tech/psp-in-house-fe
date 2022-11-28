@@ -37,11 +37,8 @@ export function Orders() {
 		return data.orders
 	})
 
-	console.log({ orders })
-
 	function transformOrders(ordersToBeParsed: OrderSubmissions[]) {
 		const recentOrders = ordersToBeParsed.map(order => {
-			console.log({ order })
 			return {
 				id: order.id,
 				createdAt: format(new Date(order.createdAt), 'MM/dd/yyyy'),
@@ -62,7 +59,6 @@ export function Orders() {
 				}),
 			}
 		})
-		console.log()
 		return recentOrders
 	}
 	if (isLoading) {

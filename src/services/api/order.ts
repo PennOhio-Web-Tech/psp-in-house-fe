@@ -1,7 +1,6 @@
 import { OrderCreateInput } from '../validators/orders'
 
 export async function addOrder(order: OrderCreateInput) {
-	console.log(JSON.stringify(order))
 	const orderRes = await fetch('http://localhost:4040/api/v1/orders/', {
 		headers: {
 			'Content-Type': 'application/json',
@@ -25,4 +24,13 @@ const options = {
 }
 export async function getOrders() {
 	return await fetch('http://localhost:4040/api/v1/orders/all', options)
+}
+
+export async function deleteOrder(id: string) {
+	return await fetch(`http://localhost:4040/api/v1/orders/${id}`, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		method: 'DELETE',
+	})
 }

@@ -1,6 +1,8 @@
 import { Dialog, DialogContent, DialogTrigger } from '@src/components/common/Dialog'
-import { Flex } from '@src/styles/components'
+import { deleteOrder } from '@src/services/api/order'
+import { Button, Flex } from '@src/styles/components'
 import { capitalizeFirstLetter, currencyFormatter } from '@src/utils'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import {
 	ContentContainer,
@@ -29,9 +31,21 @@ export type Order = {
 type OrderDialogProps = { order: Order }
 
 export function OrderDialog({ order }: OrderDialogProps) {
-	console.log({ order })
 	const [isOpen, setIsOpen] = useState(false)
 
+	const queryClient = useQueryClient()
+
+	function fulfilledHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+		e.preventDefault()
+		fulfilledMutation.mutate()
+		setIsOpen(false)
+	}
+
+	const fulfilledMutation = useMutation(async () => await deleteOrder(order.id), {
+		onSuccess: () => {
+			queryClient.invalidateQueries(['orders'])
+		},
+	})
 	return (
 		<Dialog open={isOpen}>
 			<DialogTrigger asChild>
@@ -76,8 +90,16 @@ export function OrderDialog({ order }: OrderDialogProps) {
 						})}
 					</ProductsFlex>
 					<Flex>
-						<FullLengthFlex direction="column" justifyContent="flex-end">
+						<FullLengthFlex direction="column" justifyContent="flex-end" gap="1rem">
 							<p>{`Paid with ${order.paidWith}`}</p>
+							<Button
+								onClick={e => {
+									fulfilledHandler(e)
+								}}
+								variant="white"
+							>
+								Fulfilled
+							</Button>
 						</FullLengthFlex>
 						<Flex direction="column">
 							<Flex gap="2rem">
